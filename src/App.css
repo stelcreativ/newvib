@@ -1,9 +1,15 @@
+:root{
+  --primary: #0b2e41;
+  --secondary: #4e4e4e;
+  --error: #ff4a4a;
+}
+
 .App {
   text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 20vmin;
   pointer-events: none;
 }
 
@@ -35,4 +41,16 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+nav .brand-logo{
+text-align: left;
+
+}
+
+
+.progress-bar{
+  height: 5px;
+  background: var(--primary);
+  margin-top: 20px;
 }
