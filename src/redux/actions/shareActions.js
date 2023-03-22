@@ -18,20 +18,3 @@ export const postShare = (share) => {
     }
 }
 
-
-/**
-export const deleteShare = (share) => {
-    return (dispatch, getState, { getFirebase, getFirestore }) => {
-        const firestore = getFirebase().getFirestore()
-        firestore
-            .collection('shares')
-            .doc(share.key)
-            .delete()
-            .then(() => {
-                dispatch({ type: 'DELETE_SHARE', payload: share.key })
-            }).catch((err) => {
-                dispatch({ type: 'DELETE_SHARE_ERROR', err })
-            })
-
-    }
-}*/

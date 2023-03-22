@@ -118,7 +118,7 @@ const Home = (props) => {
                 </Grid>
                 <Grid item sm={4} xs={12}>
                     <StaticProfile />
-                    {currentUser.uid ?
+                    {currentUser && currentUser.uid ?
                         <Button
                             type="submit"
                             fullwidth

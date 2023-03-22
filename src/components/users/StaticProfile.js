@@ -53,16 +53,18 @@ const StaticProfile = (props) => {
 
 
     const getUser = async () => {
-        projectFirestore
-            .collection('users')
-            .doc(currentUser.uid)
-            .get()
-            .then((documentSnapshot) => {
-                if (documentSnapshot.exists) {
-                    console.log('User Data', documentSnapshot.data())
-                    setUserData(documentSnapshot.data())
-                }
-            })
+        if (currentUser) {
+            projectFirestore
+                .collection('users')
+                .doc(currentUser.uid)
+                .get()
+                .then((documentSnapshot) => {
+                    if (documentSnapshot.exists) {
+                        console.log('User Data', documentSnapshot.data())
+                        setUserData(documentSnapshot.data())
+                    }
+                })
+        }
     }
 
     useEffect(() => {

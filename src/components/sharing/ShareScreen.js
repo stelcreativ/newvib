@@ -48,19 +48,21 @@ const ShareScreen = (props) => {
     const { currentUser } = useContext(AuthContext)
     const [likes, setLikes] = useState(1)
 
-    const [userData, setUserData] = useState(null)
+    const [userData, setUserData] = useState({})
 
     const getUser = async () => {
-        await projectFirestore
-            .collection('users')
-            .doc(currentUser.uid)
-            .get()
-            .then((docSnapshot) => {
-                if (docSnapshot.exists) {
-                    console.log('User Data', docSnapshot.data())
-                    setUserData(docSnapshot.data())
-                }
-            })
+        if (currentUser) {
+            await projectFirestore
+                .collection('users')
+                .doc(currentUser.uid)
+                .get()
+                .then((docSnapshot) => {
+                    if (docSnapshot.exists) {
+                        console.log('User Data', docSnapshot.data())
+                        setUserData(docSnapshot.data())
+                    }
+                })
+        }
     }
 
     useEffect(() => {
@@ -105,7 +107,7 @@ const ShareScreen = (props) => {
                             <img src={share.url} alt="profile" className={classes.shareimage} height="170" width="150" />
                         </CardMedia>
 
-                        {currentUser.uid == share.userId ?
+                        {currentUser && currentUser.uid == share.userId ?
                             <DeleteShare key={share.shareId}
                                 component={Link}
                                 to={'/Profile', { userId: share.userId }} />
